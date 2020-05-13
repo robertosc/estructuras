@@ -1,31 +1,31 @@
 #include<iostream>
 #include<cstdio>
-
+#include "listas.h"
 using namespace std;
 
-template <class T>
-class Nodo{
-	private:
-		Nodo<T> *siguiente;
-		T valor;
-	public:
-		Nodo<T>(T val){  //Constructor
-			this->valor = val;
-			this->siguiente = nullptr;
-		}
-
-		void establecerSiguiente(Nodo<T> *nodo){
-			siguiente = nodo;
-		}
-
-		T obtenerValor(){
-			return valor;
-		}
-
-		Nodo<T> *obtenerSiguiente(){
-        return siguiente;
-		}
-};
+//template <class T>
+//class Nodo{
+//	private:
+//		Nodo<T> *siguiente;
+//		T valor;
+//	public:
+//		Nodo<T>(T val){  //Constructor
+//			this->valor = val;
+//			this->siguiente = nullptr;
+//		}
+//
+//		void establecerSiguiente(Nodo<T> *nodo){
+//			siguiente = nodo;
+//		}
+//
+//		T obtenerValor(){
+//			return valor;
+//		}
+//
+//		Nodo<T> *obtenerSiguiente(){
+//        return siguiente;
+//		}
+//};
 
 
 
@@ -126,20 +126,24 @@ class Pila{
 		}
 };
 
-int main(){
+namespace pila{
+void main(){
 	Pila<int> pila;
-	//Nodo<int> nodo1(1);
-	//cout << nodo1.obtenerValor();
-	//cout << pila.longitud();
+	cout << "Pila1:\n";
 	pila.agregar(1);
 	pila.agregar(2);
+	pila.mostrar();
+	cout << "Pila2:\n";
 	pila.reiniciar();
 	pila.agregar(3);
-	//cout << "Hola";
-	//cout << pila.buscar(3);
-	//cout << pila.longitud();
-	//pila.eliminar();
-	//cout << pila.longitud();
+	pila.agregar(5);
+	pila.agregar(6);
+
 	pila.mostrar();
-	//pila.mostrar();
+	cout << "Pila buscar 3: " << pila.buscar(3);
+	cout << "\nLongitud pila:" << pila.longitud();
+	cout << "\nPila buscar 3 despues de eliminar primero: " << pila.buscar(3);
+	cout << "\nPila final:\n";
+	pila.mostrar();
+}
 }

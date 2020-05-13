@@ -130,36 +130,40 @@ public:
     }
 
     void reiniciar(){
-        if (inicial == nullptr){return;}
+        if (inicial == nullptr){
+				return;
+		}
         else{
-            Nodo<T> *temp = inicial; //Se inicia un segundo puntero al inicio de la lista
-            while (inicial != nullptr){ //Mientras que el inicio de la lista no apunte a null
-                inicial = inicial->obtenerSiguiente(); //El inicio se la lista pasa al nodo que le sigue
-                temp->establecerSiguiente(nullptr); //El primer nodo, pasa a apuntar a null
-                delete temp; //Se elimina el puntero
+            while (inicial != nullptr){
+                Nodo<T> *temp = inicial; //¿Xq fuera del while no sirve??
+                Nodo<T> *nuevo_inicio = inicial->obtenerSiguiente(); //cout << nuevo_inicio->obtenerValor() << inicio->obtenerValor();
+			    inicial = nuevo_inicio; //cout << nuevo_inicio->obtenerValor() << inicio->obtenerValor();
+			    temp->establecerSiguiente(nullptr);
+			    delete temp;
             }
         }
     }
 
     void mostrar(){
-			Nodo<T> *temp = inicial;
-			while (temp != nullptr){
-				cout << temp->obtenerValor() << "\n";
-				temp = temp->obtenerSiguiente();
-			}
+		Nodo<T> *temp = inicial;
+		while (temp != nullptr){
+			cout << temp->obtenerValor() << "\n";
+			temp = temp->obtenerSiguiente();
 		}
+	}
 };
 
 namespace listas{
 void main(){
     Lista<int> lista;
-    //cout << lista.buscar(10) << "\n"; // Imprime 0
-    //cout << lista.longitud() << "\n"; //Funciona imprime 0
-    //cout << lista.estaVacio() << "\n";
+    cout << "Listas1:\n";
     lista.agregar(0);
     lista.agregar(1);
     lista.agregar(2);
     lista.agregar(3);
+    lista.mostrar();
+    lista.eliminar(2);
+    cout << "Listas2:\n";
     lista.agregar(4);
     lista.mostrar();
     //cout << lista.buscar(2) << "\n"; // Imprime 1
@@ -168,10 +172,10 @@ void main(){
     //lista.eliminar(2);
     //cout << lista.buscar(2) << "\n"; // Imprime 0
     lista.reiniciar();
+    cout << "Listas2:\n";
+    lista.agregar(1);
     lista.mostrar();
-    cout << lista.longitud() << "\n";
-    //
-    //cout << lista.estaVacio();
-    //cout << lista.estaVacio();
+
+    lista.reiniciar();
 } // namespace listas
 }
